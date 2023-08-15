@@ -30,30 +30,29 @@
 class Solution {
 public:
     bool isValid(string s) {
-        int i=0, queue_counter = 1;
-        char paranthese_queue[size(s)+1];
+        int i=0, stack_counter = 1;
+        char paranthese_stack[size(s)+1];
         for(i=0;i<size(s);i++){
             if(s[i]=='{' || s[i]=='(' || s[i]=='['){
-                paranthese_queue[queue_counter] = s[i];
-                queue_counter++;
+                paranthese_stack[stack_counter] = s[i];
+                stack_counter++;
             }
-            else if(s[i]=='}' && paranthese_queue[queue_counter-1]=='{'){
-                paranthese_queue[queue_counter-1] = 0; 
-                queue_counter--;
+            else if(s[i]=='}' && paranthese_stack[stack_counter-1]=='{'){
+                paranthese_stack[stack_counter-1] = 0; 
+                stack_counter--;
             }
-            else if (s[i]==')' && paranthese_queue[queue_counter-1]=='('){
-                paranthese_queue[queue_counter-1] = 0; 
-                queue_counter--;
+            else if (s[i]==')' && paranthese_stack[stack_counter-1]=='('){
+                paranthese_stack[stack_counter-1] = 0; 
+                stack_counter--;
             }
-            else if (s[i]==']' && paranthese_queue[queue_counter-1]=='['){
-                paranthese_queue[queue_counter-1] = 0; 
-                queue_counter--;
+            else if (s[i]==']' && paranthese_stack[stack_counter-1]=='['){
+                paranthese_stack[stack_counter-1] = 0; 
+                stack_counter--;
             }else{
                 return 0;
             }
-            // std::cout << paranthese_queue[queue_counter] << " ";
         }
-        if(queue_counter==1 && size(s)!=1){
+        if(stack_counter==1 && size(s)!=1){
             return 1;
         }else{
             return 0;
